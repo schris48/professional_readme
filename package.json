@@ -1,0 +1,22 @@
+{
+  "name": "professional_readme",
+  "version": "1.0.0",
+  "description": "Dynamically generate professional README files!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schris48/professional_readme.git"
+  },
+  "author": "schris48",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schris48/professional_readme/issues"
+  },
+  "homepage": "https://github.com/schris48/professional_readme#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
