@@ -61,7 +61,7 @@ const promptUser = () => {
         type: 'checkbox',
         name: 'license',
         message: 'Choose your project license (Required)',
-        choices: ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Mozilla Public License 2.0', 'The Unlicense'],
+        choices: ['Apache', 'Apache 2', 'MIT License', 'BSD', 'GPL'],
         validate: licenseInput => {
           if (licenseInput) {
             return true;
@@ -72,10 +72,57 @@ const promptUser = () => {
         }
       }
     ]);
-  };
+};
 
+const promptInfo = userInfo => {
+// If there's no 'data' array property, create one
+    if (!userInfo.data) {
+      userInfo.data = [];
+    }
+    return inquirer
+      .prompt([
+        {
+        type: 'input',
+        name: 'username',
+        message: 'What is your Github username? (Required)',
+        validate: usernameInput => {
+          if (usernameInput) {
+            return true;
+          } else {
+            console.log('Please enter your Github username!')
+            return false;
+        }
+      }
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Enter your email address (Required)',
+      validate: emailInput => {
+        if (emailInput) {
+          return true;
+        } else {
+          console.log('Please enter your email address!')
+          return false;
+        }
+      }
+    },
+    ])
+    .then(userInfo => {
+        userInfo.data.push(userInfo);
+        if (userInfo.confirmAddUserInfo) {
+          return promptProject(userInfo);
+        } else {
+          return userInfo;
+        }
+    });
+};
 // TODO: Create a function to write README file
-promptUser()
+promptInfo()
+  .then(promptUser)
+  .then(userInfo => {
+  return generatePage(userInfo);
+  })
   .then(fileName => {
     return writeFile(fileName, data);
   })
