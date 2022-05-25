@@ -1,6 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const { writeFile, copyFile } = require('./utils/generateMarkdown.js');
+const fs = require('fs');
+//const generateMarkdown = require('./utils/generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
@@ -108,7 +110,9 @@ const promptInfo = userInfo => {
       }
     },
     ])
-    .then(userInfo => {
+    .then(userData => {
+        console.log(userInfo);
+        console.log(userData);
         userInfo.data.push(userInfo);
         if (userInfo.confirmAddUserInfo) {
           return promptProject(userInfo);
@@ -118,21 +122,21 @@ const promptInfo = userInfo => {
     });
 };
 // TODO: Create a function to write README file
-promptInfo()
-  .then(promptUser)
+promptUser()
+  .then(promptInfo)
   .then(userInfo => {
-  return generatePage(userInfo);
+  return generateMarkdown(userInfo);
   })
-  .then(fileName => {
-    return writeFile(fileName, data);
+  .then(data => {
+    return writeFile(data);
   })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then(copyFileResponse => {
-    console.log(copyFileResponse);
-  })
+  // .then(writeFileResponse => {
+  //   console.log(writeFileResponse);
+  //   return copyFile();
+  // })
+  // .then(copyFileResponse => {
+  //   console.log(copyFileResponse);
+  // })
   .catch(err => {
     console.log(err);
   });
@@ -142,3 +146,22 @@ function init() {}
 
 // Function call to initialize app
 init();
+
+const writeFile = fileContent => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./userREADME.md', fileContent, err => {
+      // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
+      if (err) {
+        reject(err);
+        // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function
+        return;
+      }
+
+      // if everything went well, resolve the Promise and send the successful data to the `.then()` method
+      resolve({
+        ok: true,
+        message: 'File created!'
+      });
+    });
+  });
+};

@@ -1,7 +1,7 @@
 {
   "name": "professional_readme",
   "version": "1.0.0",
-  "description": "Dynamically generate professional README files!",
+  "description": "[How to create a Professional README](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,13 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/schris48/professional_readme.git"
   },
-  "author": "schris48",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/schris48/professional_readme/issues"
   },
   "homepage": "https://github.com/schris48/professional_readme#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.4",
+    "path": "^0.12.7"
   }
 }
