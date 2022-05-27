@@ -40,8 +40,8 @@ function generateMarkdown(data) {
   
   ### Questions
   For inquiries please contact me via email or reach out on Github:
-  * Email: ${data.email}
-  * Github: ${data.username}
+  - Email: ${data.email}
+  - Github: ${data.username}
   `;
 }
 
