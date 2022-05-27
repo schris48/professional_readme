@@ -60,10 +60,10 @@ const promptUser = () => {
         }
       },
       {
-        type: 'checkbox',
+        type: 'list',
         name: 'license',
         message: 'Choose your project license (Required)',
-        choices: ['Apache', 'Apache 2', 'MIT License', 'BSD', 'GPL'],
+        choices: ['Apache', 'Apache2', 'MIT', 'BSD', 'GPL'],
         validate: licenseInput => {
           if (licenseInput) {
             return true;
@@ -72,18 +72,18 @@ const promptUser = () => {
             return false;
           }
         }
-      }
-    ]);
-};
-
-const promptInfo = userInfo => {
-// If there's no 'data' array property, create one
-    if (!userInfo.data) {
-      userInfo.data = [];
-    }
-    return inquirer
-      .prompt([
-        {
+      },
+      {
+        type: 'input',
+        name: 'contributors',
+        message: 'List any third-party creators that require attribution, including a link to their primary web presence. Any tutorials followed should also be linked here.'
+      },
+      {
+        type: 'input',
+        name: 'tests',
+        message: 'Provide examples on how to run any tests you have written for your application.'
+      },
+      {
         type: 'input',
         name: 'username',
         message: 'What is your Github username? (Required)',
@@ -93,67 +93,47 @@ const promptInfo = userInfo => {
           } else {
             console.log('Please enter your Github username!')
             return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address (Required)',
+        validate: emailInput => {
+          if (emailInput) {
+            return true;
+          } else {
+            console.log('Please enter your email address!')
+            return false;
+          }
         }
       }
-    },
-    {
-      type: 'input',
-      name: 'email',
-      message: 'Enter your email address (Required)',
-      validate: emailInput => {
-        if (emailInput) {
-          return true;
-        } else {
-          console.log('Please enter your email address!')
-          return false;
-        }
-      }
-    },
-    ])
-    .then(userData => {
-        console.log(userInfo);
-        console.log(userData);
-        userInfo.data.push(userInfo);
-        if (userInfo.confirmAddUserInfo) {
-          return promptProject(userInfo);
-        } else {
-          return userInfo;
-        }
-    });
+
+  ]);
 };
+
 // TODO: Create a function to write README file
 promptUser()
-  .then(promptInfo)
   .then(userInfo => {
   return generateMarkdown(userInfo);
   })
   .then(data => {
     return writeFile(data);
   })
-  // .then(writeFileResponse => {
-  //   console.log(writeFileResponse);
-  //   return copyFile();
-  // })
-  // .then(copyFileResponse => {
-  //   console.log(copyFileResponse);
-  // })
   .catch(err => {
     console.log(err);
-  });
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+});
 
 const writeFile = fileContent => {
   return new Promise((resolve, reject) => {
     fs.writeFile('./userREADME.md', fileContent, err => {
+
       // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
       if (err) {
         reject(err);
-        // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function
+
+      // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function
         return;
       }
 
