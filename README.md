@@ -12,13 +12,19 @@
   - [Questions](#questions)
 
   ## Installation
-  Open 'github.com/schris48/professional_readme'. Use Git's Fork tool to duplicate the repo to your own account. Clone the repository to your local file storage. Open the terminal to the root of the professional_readme project directory. Run 'node index'.
+  1. Open 'github.com/schris48/professional_readme'. 
+  2. Use Git's Fork tool to duplicate the repo to your own account.
+  3. Clone the repository to your local file storage. Open the terminal to the root of the professional_readme project directory.
+  4. Run 'node index'.
 
   ## Usage
   For all your README needs!
 
   ## Contribution
-  Coding Bootcamp - Github, https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide. Node Package Manager, https://www.npmjs.com/package/inquirer. Coding Bootcamp - Starter Code, https://github.com/coding-boot-camp/potential-enigma. Stephanie Smith, the best tutor!
+  1. Coding Bootcamp - Github, https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide.
+  2. Node Package Manager, https://www.npmjs.com/package/inquirer.
+  3. Coding Bootcamp - Starter Code, https://github.com/coding-boot-camp/potential-enigma.
+  4. Stephanie Smith, the best tutor!
 
   ## License
 
