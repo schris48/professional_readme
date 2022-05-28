@@ -5,6 +5,7 @@
 
   ## Table of Contents
   - [Installation](#instructions)
+  - [Walkthrough](#walkthrough)
   - [Usage](#usage)
   - [Credits](#contributors)
   - [License](#license)
@@ -15,7 +16,15 @@
   1. Open 'github.com/schris48/professional_readme'. 
   2. Use Git's Fork tool to duplicate the repo to your own account.
   3. Clone the repository to your local file storage. Open the terminal to the root of the professional_readme project directory.
-  4. Run 'node index'.
+  5. Run 'npm install'.
+  6. Run 'npm init', then fill out prompts.
+  7. Run 'npm install inquirer'.
+  8. Run 'node index'.
+
+  ## Walkthrough
+  The following video contains a demonstration of the application.
+  
+  https://youtu.be/ztxVDLDeWFE
 
   ## Usage
   For all your README needs!

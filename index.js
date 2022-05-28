@@ -1,10 +1,9 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-//const generateMarkdown = require('./utils/generateMarkdown.js');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 
-// TODO: Create an array of questions for user input
+// Array of questions for user input
 const promptUser = () => {
     return inquirer.prompt([
       {
@@ -35,7 +34,7 @@ const promptUser = () => {
       },
       {
         type: 'input',
-        name: 'instructions',
+        name: 'installation',
         message: 'Enter installation instructions (Required)',
         validate: instructionsInput => {
           if (instructionsInput) {
@@ -75,7 +74,7 @@ const promptUser = () => {
       },
       {
         type: 'input',
-        name: 'contributors',
+        name: 'credits',
         message: 'List any third-party creators that require attribution, including a link to their primary web presence. Any tutorials followed should also be linked here.'
       },
       {
@@ -113,7 +112,7 @@ const promptUser = () => {
   ]);
 };
 
-// TODO: Create a function to write README file
+// Write README file
 promptUser()
   .then(userInfo => {
   return generateMarkdown(userInfo);
